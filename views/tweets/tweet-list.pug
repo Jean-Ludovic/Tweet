@@ -1,0 +1,15 @@
+extends ../layout.pug
+
+block content
+    div(class="d-flex flex-row content b-green mx-auto")
+        div(class="profile-container b-red") 
+            include ../includes/profile.pug
+        div(class="flex-fill d-flex flex-column") 
+            if tweets
+                each tweet in tweets 
+                    div(class="card tweet-element")
+                        div(class="card-body")
+                            h5= tweet.username
+                            if tweet.url
+                                img(src=tweet.url, alt="Image du tweet", class="card-img"  width="200", height="200")
+                            p= tweet.content

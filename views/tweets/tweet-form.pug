@@ -1,0 +1,22 @@
+extends ../layout.pug
+
+block content 
+    div(class="d-flex flex-row content mx-auto")
+        div(class="profile-container") 
+            include ../includes/profile.pug
+        div(class="flex-fill") 
+            form(class="card" method="post" action="/tweets/create")
+                div(class="card-header") Écrire un tweet 
+                div(class="card-body")
+                    div(class="form-group")
+                        label(for="content") Message du tweet :
+                        textarea(class="form-control" name="content" placeholder="Partage des idees du jour") 
+                    div(class="form-group")
+                        label(for="url") URL de l'image :
+                        input(class="form-control" type="text" name="url" placeholder="http://exemple.com/image.jpg")
+                    if errors 
+                        ul(class="my-2")
+                            each error in errors 
+                                li(class="text-danger")= error
+                    div(class="w-100")
+                        input(type="submit", value="Envoyer" class="btn btn-primary ml-auto d-block")
